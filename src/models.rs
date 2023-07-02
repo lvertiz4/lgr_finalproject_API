@@ -26,9 +26,8 @@ pub struct QuestionDetail {
 //add a public 'content' field of type String
 
 #[derive(Serialize, Deserialize)]
-pub struct QuestionID {
+pub struct QuestionId {
     pub question_uuid: String,
-    pub content: String,
 }
 
 //TODO: create a struct called 'Answer'
@@ -61,6 +60,6 @@ pub struct AnswerDetail {
 // derive the following traits: Serialized, Deserialize
 //add a public 'answer_id' field of type String
 #[derive(Serialize, Deserialize)]
-pub struct AnswerID {
+pub struct AnswerId {
     pub answer_uuid: String,
 }

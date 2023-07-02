@@ -1,4 +1,4 @@
-use rocket::fairing::{Fairing, Info, Kind };
+use rocket::fairing::{Fairing, Info, Kind};
 use rocket::http::{ContentType, Header, Method, Status};
 use rocket::{Request, Response};
 
@@ -15,7 +15,7 @@ impl Fairing for CORS {
 
     //source => https://stackoverflow.com/questions/62412361/how-to-set-up-cors-or-options-for-rocket-rs
     async fn on_response<'r>(&self, request: &'r Request<'_>, response: &mut Response<'r>) { //'r means those variables all have the same liftime, this info is take by the compiler
-        response.set_headers(Header::new("Access-Control-Allow_Origin", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
         response.set_header(Header::new(
             "Access-Control-Allow-Methods",
             "POST, GET, PATCH, DELETE, OPTIONS",
