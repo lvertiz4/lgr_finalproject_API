@@ -9,3 +9,9 @@ edition = "2021"
 serde = {version = "1.0", features = ["derive"]}
 tokio = {version = "1", features = ["full"]}
 rocket = {version = "0.5.0-rc.2", features = ["json"]}
+sqlx = {version = "0.6", features = ["runtime-tokio-rustls", "postgres", "time", "uuid"]}
+dotenvy = "0.15"
+#dotenv is not maintained, only use in testing, not in production code
+# https://rustsec.org/advisories/RUSTSEC-2021-0141.html
+log = "0.4"
+pretty_env_logger = "0.4"
