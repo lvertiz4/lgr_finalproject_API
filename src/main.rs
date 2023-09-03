@@ -38,7 +38,7 @@ async fn rocket() -> _ {
 
     //Using SQLx, execute a SQL query that selects all the questions from the questions table
     //Use the 'unwrap' or 'expect' method to handle errors. This is just some test code to make sure we can connect to the database
-    //let recs = todo!();
+    let recs = todo!();
     let recs = sqlx::query!("SELECT * FROM questions")
         .fetch_all(&pool) ////The method you want to call depends on how many rows you’re expecting, in this case, fetch_all() expects multiple rows from the database
         .await
@@ -46,6 +46,7 @@ async fn rocket() -> _ {
 
     info!("********* Question Records *********");
     // TODO: Log recs with debug formatting using the info! macro
+    info!("{:?}", recs);
 
 
     rocket::build()

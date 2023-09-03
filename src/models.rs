@@ -63,3 +63,16 @@ pub struct AnswerDetail {
 pub struct AnswerId {
     pub answer_uuid: String,
 }
+
+#[derive(Error, Debug)]
+pub enum DBError { //We will use this error type inside the Direct access object (D-O-A)
+    #[error("Invalid UUID provided: {0}")]
+    InvalidUUID(String),
+    #[error("Database error occurred: {0}")]
+    Other(#[from] Box<dyn std::error::Error + Send + Sync>),
+}
+
+// source: https://www.postgresql.org/docs/current/errcodes-appendix.html
+pub mod postgres_error_codes {
+    pub const FOREIGN_KEY_VIOLATION: &str = "23503";
+}
