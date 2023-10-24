@@ -5,8 +5,7 @@ extern crate rocket;
 extern crate log;
 extern crate pretty_env_logger;
 
-
-use std::env;
+// use std::env;
 
 use dotenvy::dotenv;
 use sqlx::postgres::PgPoolOptions;
@@ -32,15 +31,15 @@ async fn rocket() -> _ {
     // let pool = todo!();
     let pool = PgPoolOptions::new() //sets up a new PgPoolOptions instances, which is a sqlx v0.60 alias for PoolOptions,a configurable, asynchronous pool of SQLx database connections, specialized for Postgres.
         .max_connections(5) //Sets the maximum number of connections that this pool should maintain.
-        .connect(&std::env::var("DATABASE_URL").expect("Did not load Postgres Database URL from .env file.")) //PUt in a string literal of desired variable from .env file; in this case, 'DATABASE_URL'
+        .connect(&std::env::var("DATABASE_URL").expect("Did not load Postgres Database URL from .env file.")) //Put in a string literal of desired variable from .env file; in this case, 'DATABASE_URL'
         .await //yield control of thread back to Runtime to await connection to Postgre database; without this line, 'pool' variable is not a Pool<Postgres> but of an unkonwn type
         .expect("Could not set up a PGPoolOptions instance");//error handling in case Postgres Pool is not initialized
 
     //Using SQLx, execute a SQL query that selects all the questions from the questions table
     //Use the 'unwrap' or 'expect' method to handle errors. This is just some test code to make sure we can connect to the database
-    let recs = todo!();
+    // let recs = todo!();
     let recs = sqlx::query!("SELECT * FROM questions")
-        .fetch_all(&pool) ////The method you want to call depends on how many rows you’re expecting, in this case, fetch_all() expects multiple rows from the database
+        .fetch_all(&pool) //The method you want to call depends on how many rows you’re expecting, in this case, fetch_all() expects multiple rows from the database
         .await
         .expect("Unable to fetch all questions from the questions table.");
 
